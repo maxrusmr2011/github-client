@@ -9,6 +9,9 @@ import { TopComponent } from './components/top/top.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { CardComponent } from './components/card/card.component';
+import { FeatureModule } from './feature/feature.module';
+import { SearchComponent } from './components/search/search.component';
+import { TopTableComponent } from './components/top-table/top-table.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,16 @@ import { CardComponent } from './components/card/card.component';
     TopComponent,
     FavoriteComponent,
     ToolbarComponent,
-    CardComponent
+    CardComponent,
+    SearchComponent,
+    TopTableComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({}, {}),
+    FeatureModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

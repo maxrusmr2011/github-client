@@ -1,1 +1,8 @@
-<p>toolbar works!</p>
+<mat-toolbar color="primary">
+  <h1>Title</h1>
+  <span class="example-spacer"></span>
+  <mat-button-toggle-group value="top" (change)="changePage($event)" name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle value="top" >Top repo</mat-button-toggle>
+    <mat-button-toggle value="favorite">Favorite repo</mat-button-toggle>
+  </mat-button-toggle-group>
+</mat-toolbar>
