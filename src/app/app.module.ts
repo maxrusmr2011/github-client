@@ -12,7 +12,10 @@ import { CardComponent } from './components/card/card.component';
 import { FeatureModule } from './feature/feature.module';
 import { SearchComponent } from './components/search/search.component';
 import { TopTableComponent } from './components/top-table/top-table.component';
-
+import { dataReducer } from './redux/dataReducer';
+import { favoriteReducer } from './redux/favoriteReducer';
+import { pageReducer } from './redux/pageReducer';
+import { counterReducer } from './redux/numReducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +30,12 @@ import { TopTableComponent } from './components/top-table/top-table.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({
+      dataBase: dataReducer,
+      // favorite: favoriteReducer,
+      // page: pageReducer,
+      count: counterReducer,
+    }),
     FeatureModule,
   ],
   providers: [],

@@ -1,1 +1,8 @@
-<p>top works!</p>
+<app-search></app-search>
+<app-top-table (card)="showCard($event)"></app-top-table>
+{{selectCard|json}}
+<div *ngIf="selectCard">
+  <app-card [currentCard]="selectCard"></app-card>
+</div>
+
+<!-- <app-card></app-card> -->

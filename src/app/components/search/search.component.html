@@ -1,1 +1,11 @@
-<p>search works!</p>
+<mat-form-field appearance="outline">
+  <mat-label>Search repo</mat-label>
+  <input matInput placeholder="Search" (keyup)="startSearch($event)">
+  <mat-icon matSuffix color="primary">search</mat-icon>
+</mat-form-field>
+<div>
+
+  {{ count$ | async }}
+</div>
+<button (click)="increments(10)">Increment</button>
+<button (click)="decrements()">Decrement</button>

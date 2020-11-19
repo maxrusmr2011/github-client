@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PeriodicElement } from '../top-table/top-table.component';
+
 
 @Component({
   selector: 'app-favorite',
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoriteComponent implements OnInit {
 
+  FAV: PeriodicElement[] = [{position:1}, {position:2}, {position:3}];
   constructor() { }
 
   ngOnInit(): void {

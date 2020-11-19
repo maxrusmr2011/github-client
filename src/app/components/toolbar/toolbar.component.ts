@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-// import {routerLink} from ''
-// import {MatButtonToggleAppearance} from '@angular/material/button-toggle';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-
+  @Input() title: string;
   btnToggle = 'top';
   constructor(private router: Router) {
   }
