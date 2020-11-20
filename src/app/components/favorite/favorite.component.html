@@ -1,2 +1,5 @@
-<p>favorite works!</p>
-<app-card *ngFor="let card of FAV" [currentCard]="card"></app-card>
+<div class="cards-list">
+  <div *ngFor="let card of listFavCards" class="cards-list__item" >
+    <app-card [currentCard]="card"></app-card>
+  </div>
+</div>

@@ -16,6 +16,7 @@ import { dataReducer } from './redux/dataReducer';
 import { favoriteReducer } from './redux/favoriteReducer';
 import { pageReducer } from './redux/pageReducer';
 import { counterReducer } from './redux/numReducer';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,8 +33,8 @@ import { counterReducer } from './redux/numReducer';
     BrowserAnimationsModule,
     StoreModule.forRoot({
       dataBase: dataReducer,
-      // favorite: favoriteReducer,
-      // page: pageReducer,
+      favorite: favoriteReducer,
+      page: pageReducer,
       count: counterReducer,
     }),
     FeatureModule,

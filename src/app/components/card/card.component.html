@@ -1,2 +1,36 @@
-<p>card works!</p>
-{{currentCard.position}}
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <a [href]="currentCard.html_url" target="_blank" class="no-underline">
+        {{currentCard.full_name}}
+      </a>
+    </mat-card-title>
+    <div class="mat-card-header-star line-center">
+      <mat-icon *ngIf="currentCard.fav" class="star-yellow" aria-hidden="true">star</mat-icon>
+        <mat-icon *ngIf="!currentCard.fav" class="star-white" aria-hidden="true">star</mat-icon>
+        <!-- <mat-icon class="star-yellow" aria-hidden="true">star</mat-icon> -->
+      <span>{{currentCard.stargazers_count}} </span>
+    </div>
+  </mat-card-header>
+  <hr>
+  <mat-card-content>
+    <div class="line-center line-between">
+      <div>
+        <img mat-card-avatar [src]="currentCard.avatar_url" alt="ava">
+      </div>
+      <a [href]="currentCard.owner_html_url" target="_blank" class="line-center no-underline">
+        <span>
+          {{currentCard.login}}
+        </span>
+        <img class="icon-github" alt="git" src="../../../assets/icons/github.png">
+
+      </a>
+    </div>
+    <p>
+      {{currentCard.description}}
+    </p>
+    <button mat-raised-button class="mat-card-button" color="primary" (click)="clickStar()">
+      {{fav ? 'Delete from favorites' : 'Add to favorites'}}
+    </button>
+  </mat-card-content>
+</mat-card>

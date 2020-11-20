@@ -1,11 +1,15 @@
-<mat-form-field appearance="outline">
+<div class="line-center search">
+<mat-form-field appearance="outline" class="line-item-grow ">
   <mat-label>Search repo</mat-label>
   <input matInput placeholder="Search" (keyup)="startSearch($event)">
   <mat-icon matSuffix color="primary">search</mat-icon>
 </mat-form-field>
-<div>
-
-  {{ count$ | async }}
+  <button
+    mat-raised-button
+    (click)="nextSearch()"
+    [disabled]="!total || page === total"
+    color="primary"
+  >
+    Next
+  </button>
 </div>
-<button (click)="increments(10)">Increment</button>
-<button (click)="decrements()">Decrement</button>

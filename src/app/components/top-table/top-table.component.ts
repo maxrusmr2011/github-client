@@ -1,8 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, AfterViewInit, OnInit, Output, OnChanges, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { storeType } from '../../model/store.model';
-
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 
 export interface PeriodicElement {
@@ -28,27 +29,51 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './top-table.component.html',
   styleUrls: ['./top-table.component.scss']
 })
-export class TopTableComponent implements OnInit {
+// export class TopTableComponent implements OnInit, AfterViewInit {
+export class TopTableComponent implements OnInit, OnChanges, AfterViewInit {
   data$: Observable<any[]>;
 
-  constructor(private store: Store<storeType>) {
-    this.data$ = store.select('dataBase');
-    this.data$.subscribe((dd) => {
-      console.log('ok', dd);
-    });
-   }
-
   displayedColumns: string[] = ['full_name', 'stargazers_count', 'fav'];
-  dataSource = ELEMENT_DATA;
-  // @Input() selectCard: PeriodicElement|null;
-  @Output() card = new EventEmitter<PeriodicElement|null>();
+  dataSource: MatTableDataSource<any>;
+  // dataSourceRaw: any[];
+  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  @Output() cardOne = new EventEmitter<any|null>();
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  constructor(private store: Store<storeType>) {
+    console.log('t const');
+
+  }
 
   ngOnInit(): void {
-  }
-  cardChange(selCard: PeriodicElement|null): void {
-    console.log(selCard);
+    // this.dataSource = [];
+    console.log('t init', this.dataSource);
+    this.data$ = this.store.select('dataBase');
+    this.data$.subscribe((dd) => {
+      console.log('t ok', dd);
+      // this.dataSourceRaw = dd;
+      this.dataSource = new MatTableDataSource<any>(dd);
+      this.dataSource.paginator = this.paginator;
+      console.log('count', this.dataSource.data);
 
-    this.card.emit(selCard);
+    });
+    // this.dataSource.paginator = this.paginator;
+  }
+
+  ngAfterViewInit(): void {
+    console.log('t view');
+    this.dataSource.paginator = this.paginator;
+
+  }
+
+  ngOnChanges(): void {
+
+    console.log('t change');
+  }
+
+  cardSelect(selCard: PeriodicElement|null): void {
+    // console.log(selCard);
+    this.cardOne.emit(selCard);
   }
 
 }

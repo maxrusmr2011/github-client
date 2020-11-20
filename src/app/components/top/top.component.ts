@@ -15,7 +15,7 @@ export class TopComponent implements OnInit {
   }
 
   showCard(e): void {
-    console.log('1', e);
+    // console.log('1', e);
     this.selectCard = e;
   }
 

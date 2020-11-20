@@ -3,6 +3,6 @@
   <span class="example-spacer"></span>
   <mat-button-toggle-group value="top" (change)="changePage($event)" name="fontStyle" aria-label="Font Style">
     <mat-button-toggle value="top" >Top repo</mat-button-toggle>
-    <mat-button-toggle value="favorite">Favorite repo</mat-button-toggle>
+    <mat-button-toggle value="favorite"><span [matBadge]="countFav" matBadgeColor="accent">Favorite repo</span></mat-button-toggle>
   </mat-button-toggle-group>
 </mat-toolbar>
