@@ -1,79 +1,51 @@
-import { Component, EventEmitter, AfterViewInit, OnInit, Output, OnChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { favoriteToggle } from 'src/app/redux/favoriteReducer';
 import { storeType } from '../../model/store.model';
-import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { FunctionService } from 'src/app/feature/services/function.service';
 
-
-export interface PeriodicElement {
-  name?: string;
-  position?: number;
-  weight?: number;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079 },
-  {position: 2, name: 'Helium', weight: 4.0026 },
-  {position: 3, name: 'Lithium', weight: 6.941 },
-  {position: 4, name: 'Beryllium', weight: 9.0122},
-  {position: 5, name: 'Boron', weight: 10.811},
-  {position: 6, name: 'Carbon', weight: 12.0107},
-  {position: 7, name: 'Nitrogen', weight: 14.0067},
-  {position: 8, name: 'Oxygen', weight: 15.999},
-  {position: 9, name: 'Fluorine', weight: 18.9984},
-  {position: 10, name: 'Neon', weight: 20.1797},
-];
 @Component({
   selector: 'app-top-table',
   templateUrl: './top-table.component.html',
   styleUrls: ['./top-table.component.scss']
 })
-// export class TopTableComponent implements OnInit, AfterViewInit {
-export class TopTableComponent implements OnInit, OnChanges, AfterViewInit {
+export class TopTableComponent implements OnInit {
   data$: Observable<any[]>;
+  page$: Observable<any>;
+  canScroll: boolean;
 
-  displayedColumns: string[] = ['full_name', 'stargazers_count', 'fav'];
+  displayedColumns: string[] = ['num', 'full_name', 'stargazers_count', 'fav'];
   dataSource: MatTableDataSource<any>;
-  // dataSourceRaw: any[];
-  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @Output() cardOne = new EventEmitter<any|null>();
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private store: Store<storeType>) {
-    console.log('t const');
-
-  }
+  constructor(private fun: FunctionService, private store: Store<storeType>) { }
 
   ngOnInit(): void {
-    // this.dataSource = [];
-    console.log('t init', this.dataSource);
     this.data$ = this.store.select('dataBase');
-    this.data$.subscribe((dd) => {
-      console.log('t ok', dd);
-      // this.dataSourceRaw = dd;
-      this.dataSource = new MatTableDataSource<any>(dd);
-      this.dataSource.paginator = this.paginator;
-      console.log('count', this.dataSource.data);
-
+    this.data$.subscribe((getData) => {
+      this.dataSource = new MatTableDataSource<any>(getData);
     });
-    // this.dataSource.paginator = this.paginator;
+
+    this.page$ = this.store.select('page');
+    this.page$.subscribe((getPage) => {
+      this.canScroll = getPage.canReq;
+      this.dataSource.filter = getPage.word.trim().toLowerCase();
+    });
   }
 
-  ngAfterViewInit(): void {
-    console.log('t view');
-    this.dataSource.paginator = this.paginator;
-
-  }
-
-  ngOnChanges(): void {
-
-    console.log('t change');
-  }
-
-  cardSelect(selCard: PeriodicElement|null): void {
-    // console.log(selCard);
+  cardSelect(selCard: any|null): void {
     this.cardOne.emit(selCard);
   }
 
+  clickStar(card): void {
+    this.store.dispatch(favoriteToggle({ card }));
+  }
+
+  toScroll(e): void {
+    if (this.canScroll && e.target.offsetHeight + e.target.scrollTop === e.target.scrollHeight) {
+      this.fun.nextRequest();
+    }
+  }
 }

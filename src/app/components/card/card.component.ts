@@ -1,45 +1,31 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
-// import { PeriodicElement } from '../top-table/top-table.component';
 import { Store } from '@ngrx/store';
-import { favoriteAdd, favoriteDel } from '../../redux/favoriteReducer';
+import { favoriteToggle } from '../../redux/favoriteReducer';
 import { storeType } from 'src/app/model/store.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit, OnChanges {
+export class CardComponent implements OnInit {
   @Input() currentCard: any;
-  fav: boolean;
+  isFav: boolean;
+  fav$: Observable<any[]>;
+
   constructor(private store: Store<storeType>) {
+    this.fav$ = store.select('favorite');
   }
 
   ngOnInit(): void {
-    this.fav = this.currentCard.fav;
-    console.log('init', this.fav);
-
+    this.isFav = this.currentCard.fav;
+    this.fav$.subscribe((dd) => {
+      this.isFav = !!dd.find((item) => item.id === this.currentCard.id);
+    });
   }
-  ngOnChanges(): void {
-    this.fav = this.currentCard.fav;
-    console.log('change', this.fav);
 
-  }
   clickStar(): void {
-    this.fav = !this.fav;
-    if (this.fav) {
-      this.addFav();
-    } else {
-      this.delFav();
-    }
-
+    this.store.dispatch(favoriteToggle({ card: { ...this.currentCard, fav: this.isFav } }));
   }
-
-  addFav(): void {
-    this.store.dispatch(favoriteAdd({ full_name: this.currentCard.full_name }));
-  }
-  delFav(): void {
-    this.store.dispatch(favoriteDel({ full_name: this.currentCard.full_name }));
-  }
-
 }

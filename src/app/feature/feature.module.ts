@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpService } from './services/http.service';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatBadgeModule} from '@angular/material/badge';
+import { FunctionService } from './services/function.service';
 @NgModule({
   declarations: [],
   imports: [
@@ -46,6 +47,7 @@ import {MatBadgeModule} from '@angular/material/badge';
   ],
   providers: [
     HttpService,
+    FunctionService,
   ]
 })
 export class FeatureModule { }

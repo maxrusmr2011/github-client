@@ -1,20 +1,21 @@
 import { createAction, createReducer, props, on } from '@ngrx/store';
-
-export const favoriteAdd = createAction('favorite add', props<{ full_name: string }>());
-export const favoriteDel = createAction('favorite del', props<{ full_name: string }>());
+import { FunctionService } from '../feature/services/function.service';
+export const favoriteToggle = createAction('favorite toggle', props<{ card: any }>());
 export const favoriteGet = createAction('favorite get', props<{ list: string[] }>());
 export const favoriteReset = createAction('favorite reset');
-export const favoriteInitialState = [] as number[];
+export const favoriteInitialState: any[] = FunctionService.getFav();
 
 const rawFavoriteReducer = createReducer(
   favoriteInitialState,
-  on(favoriteAdd, (state, { full_name }: any) => {
-    if (!state.includes( full_name)) {
-      return [...state,  full_name];
+  on(favoriteToggle, (state, { card }: any) => {
+    if (card.fav) {
+      return state.filter((item) => item.id !== card.id);
+    }
+    if (!state.find((item) => item.id === card.id)) {
+      return [...state, { ...card, fav: true }];
     }
     return [...state];
   }),
-  on(favoriteDel, (state, { full_name }: any) => state.filter((item) => item !== full_name)),
   on(favoriteReset, () => favoriteInitialState),
   on(favoriteGet, (state, { list }) => [...list])
 );
@@ -22,4 +23,3 @@ const rawFavoriteReducer = createReducer(
 export function favoriteReducer(state, action): any {
   return rawFavoriteReducer(state, action);
 }
-

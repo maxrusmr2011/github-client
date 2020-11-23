@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PeriodicElement } from '../top-table/top-table.component';
 
 @Component({
   selector: 'app-top',
@@ -7,15 +6,14 @@ import { PeriodicElement } from '../top-table/top-table.component';
   styleUrls: ['./top.component.scss']
 })
 export class TopComponent implements OnInit {
+  selectCard: any|null = null;
 
-  selectCard: PeriodicElement|null = null;
   constructor() { }
 
   ngOnInit(): void {
   }
 
   showCard(e): void {
-    // console.log('1', e);
     this.selectCard = e;
   }
 

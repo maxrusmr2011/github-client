@@ -1,9 +1,23 @@
-.full-table {
-  // width: 50%;
-}
 
+.full-table {
+
+  max-height: calc(100vh - 150px);
+  // height: 300px;
+  overflow: auto;
+}
 .mat-table {
   width: 100%;
+
+  th {
+    text-align: center;
+    font-weight: 700;
+  }
+  &-index {
+    padding-right: 5px;
+    text-align: right;
+    color: blue;
+
+  }
 }
 
 tr.mat-row:hover {
