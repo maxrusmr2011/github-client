@@ -2,13 +2,17 @@
   flex: 1 1 auto;
 }
 .mat-button-toggle-group {
+  overflow: visible;
+
   .mat-button-toggle {
     background: transparent;
     color: #fff;
   }
+
   .mat-button-toggle:hover {
     background: rgba(255, 255, 255, 0.3);
   }
+
   .mat-button-toggle-checked {
     background: rgba(255, 255, 255, 0.5);
     color: yellow;

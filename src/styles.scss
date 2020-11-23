@@ -101,3 +101,11 @@ $size_icon: 20px;
   // width: 100%;
   padding: 0 !important;
 }
+
+
+@media (max-width: 680px) {
+  .container__item .mat-card-button-cancel {
+    display: inline-block !important;
+  }
+
+}

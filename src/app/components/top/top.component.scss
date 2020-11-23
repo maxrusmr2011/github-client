@@ -1,13 +1,20 @@
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  &__item {
-
-  }
 }
-.card-sheet {
-  // position: fixed;
-  // right: 10px;
-  // top: 60px;
-  // width: 48%;
+
+@media (max-width: 680px) {
+  .container {
+    display: block;
+    position: relative;
+
+    &__item:nth-child(2) {
+      position: fixed;
+      left: 17px;
+      top: 192px;
+      width: 320px;
+      z-index: 100;
+
+    }
+  }
 }

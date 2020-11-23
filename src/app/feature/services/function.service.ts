@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { storeType } from 'src/app/model/store.model';
 import { dataAdd, dataCreate } from 'src/app/redux/dataReducer';
 import { favoriteGet } from 'src/app/redux/favoriteReducer';
-import { pageFirst, pageNext, totalChange } from 'src/app/redux/pageReducer';
+import { isLoadingChange, pageFirst, pageNext, totalChange } from 'src/app/redux/pageReducer';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -40,15 +40,17 @@ export class FunctionService {
 
   static getFav(): any[] {
     const get = localStorage.getItem('favorites');
-    let result;
+    let result: any[];
     try {
       result = JSON.parse(get);
-    } catch(e) {
+    } catch (e) {
       result = [];
     }
     return result;
   }
+
   firstRequest(): void {
+    this.store.dispatch(isLoadingChange({ isLoading: true }));
     this.store.dispatch(pageFirst());
     this.http.getList(this.page.page)
       .subscribe((dataGet) => {
@@ -56,17 +58,21 @@ export class FunctionService {
         this.store.dispatch(totalChange({ total: total_count }));
         const data = items.map((item) => this.cutData(item));
         this.store.dispatch(dataCreate({ data }));
+        this.store.dispatch(isLoadingChange({ isLoading: false }));
+
       });
   }
 
   nextRequest(): void {
+    this.store.dispatch(isLoadingChange({ isLoading: true }));
     this.store.dispatch(pageNext());
     this.http.getList(this.page.page)
-    .subscribe((dataGet) => {
-      const { items } = dataGet;
-      const data = items.map((item) => this.cutData(item));
-      this.store.dispatch(dataAdd({ data }));
-    });
+      .subscribe((dataGet) => {
+        const { items } = dataGet;
+        const data = items.map((item) => this.cutData(item));
+        this.store.dispatch(dataAdd({ data }));
+        this.store.dispatch(isLoadingChange({ isLoading: false }));
+      });
   }
 
   changeData(item): any {

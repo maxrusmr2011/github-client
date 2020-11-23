@@ -17,4 +17,8 @@ export class TopComponent implements OnInit {
     this.selectCard = e;
   }
 
+  hideCard(): void {
+    this.selectCard = null;
+  }
+
 }

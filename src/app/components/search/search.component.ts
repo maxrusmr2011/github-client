@@ -17,20 +17,15 @@ export class SearchComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
-  filter(e): void {
-    if (e.code === 'Enter') {
-      this.store.dispatch(wordChange({ word: e.target.value }));
-    }
-  }
-
   public ngAfterViewInit(): void {
     fromEvent(this.inputElement.nativeElement, 'keyup')
       .pipe(
-        map(() => {
+        map((e: any) => {
           this.store.dispatch(canReqChange({ canReq: false }));
+          return e.currentTarget.value;
         }),
         debounceTime(1000),
-        map(() => this.inputElement.nativeElement.value))
+      )
       .subscribe( (word) => {
         if (!word) {
           this.store.dispatch(wordChange({ word: '' }));

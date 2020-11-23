@@ -16,10 +16,19 @@
   &-header-star {
     margin-right: 16px;
   }
-
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
   &-button {
     background: blue;
     color: #ffffff;
+
+    &-cancel {
+      display: none;
+      background: #ffffff;
+    }
   }
 }
+
 

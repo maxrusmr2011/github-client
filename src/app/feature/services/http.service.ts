@@ -13,18 +13,10 @@ export class HttpService {
 
   public getList(page: number): Observable<any> {
     const params: HttpParams = new HttpParams()
-      // .set('q', `${query} in:name`)
       .set('q', `created:>2020-01-01`)
       .set('sort', 'stars')
-      // .set('order', 'desc')
       .set('page', String(page))
       .set('per_page', '20');
-    return this.http.get(REQ_URL, { params });
-  }
-
-  public getOne(repo: string): Observable<any> {
-    const params: HttpParams = new HttpParams()
-      .set('q', `repo:${repo}`);
     return this.http.get(REQ_URL, { params });
   }
 

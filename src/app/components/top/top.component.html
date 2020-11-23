@@ -5,7 +5,7 @@
   </div>
   <div class="container__item">
     <div *ngIf="selectCard" class="card-sheet">
-      <app-card [currentCard]="selectCard"></app-card>
+      <app-card [currentCard]="selectCard" (hideCard)="hideCard()"></app-card>
     </div>
   </div>
 </div>

@@ -17,6 +17,7 @@ export class ToolbarComponent implements OnInit {
   btnToggle = 'top';
 
   constructor(private fun: FunctionService, private router: Router, private store: Store<storeType>) {
+    this.router.navigate([this.btnToggle]);
     this.fav$ = this.store.select('favorite');
     this.fav$.subscribe((dd) => {
         this.listFav = dd;
@@ -24,11 +25,12 @@ export class ToolbarComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.router.navigate([this.btnToggle]);
     this.fun.firstRequest();
   }
 
   changePage(e): void {
+    console.log(e.value);
+
     this.router.navigate([e.value]);
   }
 

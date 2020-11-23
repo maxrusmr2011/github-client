@@ -1,9 +1,24 @@
 
 .full-table {
+  min-height: 300px;
+  position: relative;
 
-  max-height: calc(100vh - 150px);
-  // height: 300px;
-  overflow: auto;
+  &__loading {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__data {
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+  }
 }
 .mat-table {
   width: 100%;

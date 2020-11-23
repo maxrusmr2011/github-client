@@ -14,6 +14,7 @@ import { TopTableComponent } from './components/top-table/top-table.component';
 import { dataReducer } from './redux/dataReducer';
 import { favoriteReducer } from './redux/favoriteReducer';
 import { pageReducer } from './redux/pageReducer';
+import { FavoriteComponent } from './components/favorite/favorite.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { pageReducer } from './redux/pageReducer';
     CardComponent,
     SearchComponent,
     TopTableComponent,
+    FavoriteComponent,
   ],
   imports: [
     BrowserModule,

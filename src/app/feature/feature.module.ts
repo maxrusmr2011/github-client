@@ -11,9 +11,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpService } from './services/http.service';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatBadgeModule } from '@angular/material/badge';
 import { FunctionService } from './services/function.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -30,6 +32,7 @@ import { FunctionService } from './services/function.service';
     MatGridListModule,
     MatButtonModule,
     MatBadgeModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatToolbarModule,
@@ -44,6 +47,7 @@ import { FunctionService } from './services/function.service';
     MatGridListModule,
     MatButtonModule,
     MatBadgeModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     HttpService,

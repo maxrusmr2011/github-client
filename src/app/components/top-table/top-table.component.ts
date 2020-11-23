@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { favoriteToggle } from 'src/app/redux/favoriteReducer';
@@ -11,10 +11,12 @@ import { FunctionService } from 'src/app/feature/services/function.service';
   templateUrl: './top-table.component.html',
   styleUrls: ['./top-table.component.scss']
 })
-export class TopTableComponent implements OnInit {
+export class TopTableComponent implements OnInit, AfterViewInit {
   data$: Observable<any[]>;
   page$: Observable<any>;
   canScroll: boolean;
+  word: string;
+  isLoading: boolean;
 
   displayedColumns: string[] = ['num', 'full_name', 'stargazers_count', 'fav'];
   dataSource: MatTableDataSource<any>;
@@ -31,8 +33,14 @@ export class TopTableComponent implements OnInit {
     this.page$ = this.store.select('page');
     this.page$.subscribe((getPage) => {
       this.canScroll = getPage.canReq;
-      this.dataSource.filter = getPage.word.trim().toLowerCase();
+      this.word = getPage.word;
+      this.isLoading = getPage.isLoading;
+      this.dataSource.filter = this.word.trim().toLowerCase();
     });
+  }
+
+  public ngAfterViewInit(): void {
+    this.dataSource.filter = this.word.trim().toLowerCase();
   }
 
   cardSelect(selCard: any|null): void {
