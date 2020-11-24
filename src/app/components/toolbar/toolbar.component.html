@@ -1,12 +1,12 @@
 <mat-toolbar color="primary">
   <h1>{{title}}</h1>
   <span class="example-spacer"></span>
-  <mat-button-toggle-group value="top" (change)="changePage($event)" name="fontStyle" aria-label="Font Style">
-    <mat-button-toggle value="top" >Top repo</mat-button-toggle>
-    <mat-button-toggle value="favorite">
-      <span [matBadge]="listFav.length" matBadgeColor="accent">
+  <div [matBadge]="listFav.length" matBadgeColor="accent">
+    <mat-button-toggle-group value="top" (change)="changePage($event)" name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="top">Top repo</mat-button-toggle>
+      <mat-button-toggle value="favorite">
         Favorite repo
-      </span>
-    </mat-button-toggle>
-  </mat-button-toggle-group>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
 </mat-toolbar>

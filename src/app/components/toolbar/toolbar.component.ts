@@ -29,8 +29,6 @@ export class ToolbarComponent implements OnInit {
   }
 
   changePage(e): void {
-    console.log(e.value);
-
     this.router.navigate([e.value]);
   }
 

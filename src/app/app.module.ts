@@ -15,6 +15,7 @@ import { dataReducer } from './redux/dataReducer';
 import { favoriteReducer } from './redux/favoriteReducer';
 import { pageReducer } from './redux/pageReducer';
 import { FavoriteComponent } from './components/favorite/favorite.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,9 @@ import { FavoriteComponent } from './components/favorite/favorite.component';
       dataBase: dataReducer,
       favorite: favoriteReducer,
       page: pageReducer,
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
     }),
     FeatureModule,
   ],

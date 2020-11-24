@@ -10,11 +10,11 @@
 
     &__item:nth-child(2) {
       position: fixed;
-      left: 17px;
-      top: 192px;
+      left: 50%;
+      top: 40px;
       width: 320px;
       z-index: 100;
-
+      transform: translateX(-50%);
     }
   }
 }

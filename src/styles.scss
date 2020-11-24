@@ -98,10 +98,13 @@ $size_icon: 20px;
 
 
 .search .mat-form-field-wrapper {
-  // width: 100%;
   padding: 0 !important;
 }
 
+.mat-button-toggle-appearance-standard
+.mat-button-toggle-label-content {
+  line-height: 36px;
+}
 
 @media (max-width: 680px) {
   .container__item .mat-card-button-cancel {
