@@ -2,9 +2,9 @@
   <h1>{{title}}</h1>
   <span class="example-spacer"></span>
   <div [matBadge]="listFav.length" matBadgeColor="accent">
-    <mat-button-toggle-group value="top" (change)="changePage($event)" name="fontStyle" aria-label="Font Style">
-      <mat-button-toggle value="top">Top repo</mat-button-toggle>
-      <mat-button-toggle value="favorite">
+    <mat-button-toggle-group [value]="btnToggle" (change)="changePage($event)" name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="top" >Top repo</mat-button-toggle>
+      <mat-button-toggle value="favorite" [disabled]="!listFav.length">
         Favorite repo
       </mat-button-toggle>
     </mat-button-toggle-group>

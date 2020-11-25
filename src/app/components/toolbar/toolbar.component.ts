@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { FunctionService } from 'src/app/feature/services/function.service';
+// import { FunctionService } from 'src/app/feature/services/function.service';
+import { FunctionService } from '@service/function.service';
 import { storeType } from 'src/app/model/store.model';
 
 @Component({
@@ -19,8 +20,12 @@ export class ToolbarComponent implements OnInit {
   constructor(private fun: FunctionService, private router: Router, private store: Store<storeType>) {
     this.router.navigate([this.btnToggle]);
     this.fav$ = this.store.select('favorite');
-    this.fav$.subscribe((dd) => {
-        this.listFav = dd;
+    this.fav$.subscribe((getFav) => {
+        this.listFav = getFav;
+        if (!this.listFav.length) {
+          this.router.navigate(['top']);
+          this.btnToggle = 'top';
+        }
       });
     }
 
@@ -29,6 +34,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   changePage(e): void {
+    this.btnToggle = e.value;
     this.router.navigate([e.value]);
   }
 

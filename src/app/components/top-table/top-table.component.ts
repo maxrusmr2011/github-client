@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { favoriteToggle } from 'src/app/redux/favoriteReducer';
 import { storeType } from '../../model/store.model';
 import {MatTableDataSource} from '@angular/material/table';
-import { FunctionService } from 'src/app/feature/services/function.service';
+import { FunctionService } from '@service/function.service';
 
 @Component({
   selector: 'app-top-table',
