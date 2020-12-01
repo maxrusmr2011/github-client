@@ -1,0 +1,18 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.mat-button-toggle-group {
+  .mat-button-toggle {
+    background: transparent;
+    color: #fff;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    &-checked {
+      background: rgba(255, 255, 255, 0.5);
+      color: yellow;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+
+.full-table {
+  min-height: 300px;
+  position: relative;
+
+  &__loading {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__data {
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+  }
+}
+.mat-table {
+  width: 100%;
+
+  th {
+    text-align: center;
+    font-weight: 700;
+  }
+  &-index {
+    padding-right: 5px;
+    text-align: right;
+    color: blue;
+
+  }
+}
+
+tr.mat-row:hover {
+  background: rgba(0, 0, 0, 0.2);
+}

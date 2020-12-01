@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <a [href]="currentCard.html_url" target="_blank" class="no-underline">
+        {{currentCard.full_name}}
+      </a>
+    </mat-card-title>
+    <div class="mat-card-header-star line-center">
+      <mat-icon *ngIf="isFav" class="star-yellow" aria-hidden="true">star</mat-icon>
+      <mat-icon *ngIf="!isFav" class="star-white" aria-hidden="true">star</mat-icon>
+      <span>{{currentCard.stargazers_count}} </span>
+    </div>
+  </mat-card-header>
+  <hr>
+  <mat-card-content>
+    <div class="line-center line-between content__owner">
+      <div>
+        <img mat-card-avatar [src]="currentCard.avatar_url" alt="ava">
+      </div>
+      <a [href]="currentCard.owner_html_url" target="_blank" class="line-center no-underline user-github">
+        <span>
+          {{currentCard.login}}
+        </span>
+        <img class="icon-github" alt="git" src="../../../assets/icons/github.png">
+
+      </a>
+    </div>
+    <p class="content__descr">
+      {{currentCard.description}}
+    </p>
+    <div class="mat-card__buttons">
+      <button mat-raised-button class="mat-card-button" color="primary" (click)="clickStar()">
+        {{isFav ? 'Delete from favorites' : 'Add to favorites'}}
+      </button>
+
+      <button mat-button class="mat-card-button-cancel" (click)="clickCancel()">
+        Cancel
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

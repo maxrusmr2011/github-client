@@ -1,0 +1,8 @@
+.cards-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  &__item {
+    width: 320px;
+  }
+}

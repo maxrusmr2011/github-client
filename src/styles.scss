@@ -1,1 +1,114 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-table {
+  // width: 50%;
+  background: lighten(#673ab7, 40%);
+
+  .mat-header-row {
+    background: lighten(#673ab7, 35%);
+
+  }
+
+}
+
+.mat-card {
+  min-width: 300px;
+  margin: 10px;
+  padding: 0;
+  border: 1px solid #888888;
+  background: lighten(#673ab7, 40%);
+
+  &-header {
+
+    &-text {
+      flex-grow: 1;
+    }
+  }
+
+  &-title {
+    margin: 0 !important;
+    word-break: break-all;
+  }
+
+  &-content {
+    padding: 16px;
+  }
+
+  $size-avatar: 100px;
+  &-avatar {
+    height: $size_avatar !important;
+    width: $size_avatar !important;
+  }
+
+  .user-github span {
+    word-break: break-all;
+    max-width: 130px;
+  }
+  hr {
+    color: #aaaaaa;
+  }
+}
+.mat-icon {
+  &.star-yellow {
+    color: yellow;
+  }
+  &.star-white {
+    color: #ffffff;
+  }
+}
+.line {
+  &-center {
+  display: flex;
+  align-items: center;
+  }
+  &-between {
+    justify-content: space-between;
+  }
+  &-stretch {
+    align-items: stretch;
+  }
+  &-item-grow {
+    flex-grow: 1;
+  }
+
+}
+a.no-underline {
+  &:link {
+    text-decoration: none;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}
+$size_icon: 20px;
+.icon-github {
+  width: $size_icon;
+  height: $size_icon;
+  margin-left: 5px;
+}
+
+
+.search .mat-form-field-wrapper {
+  padding: 0 !important;
+}
+
+.mat-button-toggle-appearance-standard
+.mat-button-toggle-label-content {
+  line-height: 36px;
+}
+
+@media (max-width: 680px) {
+  .container__item .mat-card-button-cancel {
+    display: inline-block !important;
+  }
+
+}
