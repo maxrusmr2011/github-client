@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { storeType } from 'src/app/model/store.model';
 import { dataAdd, dataCreate } from 'src/app/redux/dataReducer';
-import { favoriteGet } from 'src/app/redux/favoriteReducer';
 import { isLoadingChange, pageFirst, pageNext, totalChange } from 'src/app/redux/pageReducer';
 import { HttpService } from './http.service';
 
