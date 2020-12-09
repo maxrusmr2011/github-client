@@ -16,6 +16,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { FunctionService } from './services/function.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NoFavoriteGuard } from './guards/no-favorite.guard';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -34,6 +36,8 @@ import { NoFavoriteGuard } from './guards/no-favorite.guard';
     MatButtonModule,
     MatBadgeModule,
     MatProgressSpinnerModule,
+    OverlayModule,
+    MatAutocompleteModule,
   ],
   exports: [
     MatToolbarModule,
@@ -49,6 +53,8 @@ import { NoFavoriteGuard } from './guards/no-favorite.guard';
     MatButtonModule,
     MatBadgeModule,
     MatProgressSpinnerModule,
+    OverlayModule,
+    MatAutocompleteModule,
   ],
   providers: [
     HttpService,

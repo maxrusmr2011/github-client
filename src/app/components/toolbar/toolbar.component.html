@@ -1,5 +1,11 @@
 <mat-toolbar color="primary">
-  <h1>{{title}}</h1>
+  <h1
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
+  (click)="isOpen = !isOpen"
+  >
+    {{title}}
+  </h1>
   <span class="example-spacer"></span>
   <div [matBadge]="listFav.length" matBadgeColor="accent">
     <mat-button-toggle-group [value]="btnToggle" (change)="changePage($event)" name="fontStyle" aria-label="Font Style">
@@ -7,6 +13,32 @@
       <mat-button-toggle value="favorite" [disabled]="!listFav.length">
         Favorite repo
       </mat-button-toggle>
+      <mat-button-toggle value="next" >Next</mat-button-toggle>
+      <mat-button-toggle value="next2" >Next2</mat-button-toggle>
+
     </mat-button-toggle-group>
   </div>
 </mat-toolbar>
+
+<ng-template
+cdkConnectedOverlay
+[cdkConnectedOverlayOrigin]="trigger"
+[cdkConnectedOverlayOpen]="isOpen"
+>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input type="text"
+           placeholder="Pick one"
+           aria-label="Number"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of  filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+</ng-template>

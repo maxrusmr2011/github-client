@@ -16,6 +16,10 @@ import { favoriteReducer } from './redux/favoriteReducer';
 import { pageReducer } from './redux/pageReducer';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NextComponent } from './components/next/next.component';
+import { Next2Component } from './components/next2/next2.component';
+import { NextInnerComponent } from './components/next-inner/next-inner.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +30,16 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     SearchComponent,
     TopTableComponent,
     FavoriteComponent,
+    NextComponent,
+    Next2Component,
+    NextInnerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({
       dataBase: dataReducer,
       favorite: favoriteReducer,
